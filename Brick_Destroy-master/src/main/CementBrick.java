@@ -1,4 +1,4 @@
-package text;
+package main;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
