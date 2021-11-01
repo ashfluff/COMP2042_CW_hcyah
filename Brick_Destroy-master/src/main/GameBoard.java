@@ -18,6 +18,7 @@
 package main;
 
 import ingameitems.Ball;
+import ingameitems.Brick;
 
 import javax.swing.*;
 import java.awt.*;

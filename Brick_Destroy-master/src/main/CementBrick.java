@@ -1,5 +1,7 @@
 package main;
 
+import ingameitems.Brick;
+
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
@@ -34,7 +36,7 @@ public class CementBrick extends Brick {
             return false;
         super.impact();
         if(!super.isBroken()){
-            crack.makeCrack(point,dir);
+            crack.makeCrack(point, dir);
             updateBrick();
             return false;
         }
