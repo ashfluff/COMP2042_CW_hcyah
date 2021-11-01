@@ -1,4 +1,4 @@
-package main;
+package ingameitems;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -8,16 +8,17 @@ import java.awt.geom.RectangularShape;
  * Created by filippo on 04/09/16.
  *
  */
-abstract public class Ball {
+ public abstract class Ball {
 
     private Shape ballFace;
 
-    private Point2D center;
+    public Point2D center;
 
-    Point2D up;
-    Point2D down;
-    Point2D left;
-    Point2D right;
+    //up, down, left, right changed to public
+    public Point2D up;
+    public Point2D down;
+    public Point2D left;
+    public Point2D right;
 
     private Color border;
     private Color inner;

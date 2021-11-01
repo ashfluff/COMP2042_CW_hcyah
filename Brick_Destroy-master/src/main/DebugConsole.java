@@ -17,6 +17,8 @@
  */
 package main;
 
+import ingameitems.Ball;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;

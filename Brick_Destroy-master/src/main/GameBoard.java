@@ -17,6 +17,8 @@
  */
 package main;
 
+import ingameitems.Ball;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -162,7 +164,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawBall(Ball ball,Graphics2D g2d){
+    private void drawBall(Ball ball, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
         Shape s = ball.getBallFace();

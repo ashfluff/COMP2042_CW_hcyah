@@ -17,6 +17,8 @@
  */
 package main;
 
+import ingameitems.Ball;
+
 import java.awt.*;
 
 
