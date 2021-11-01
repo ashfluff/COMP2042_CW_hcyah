@@ -1,4 +1,4 @@
-package main;
+package ingameitems;
 
 import ingameitems.Brick;
 
