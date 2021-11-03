@@ -18,8 +18,7 @@
 package main;
 
 import ingameitems.*;
-import main.Player;
-import main.SteelBrick;
+import ingameitems.SteelBrick;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
