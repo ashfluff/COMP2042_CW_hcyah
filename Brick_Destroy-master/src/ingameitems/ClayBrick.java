@@ -1,6 +1,5 @@
-package main;
+package ingameitems;
 
-import ingameitems.Brick;
 
 import java.awt.*;
 import java.awt.Point;
