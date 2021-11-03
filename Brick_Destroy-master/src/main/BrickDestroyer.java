@@ -20,7 +20,7 @@ package main;
 import java.awt.*;
 
 
-public class GraphicsMain {
+public class BrickDestroyer {
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> new GameFrame().initialize());
