@@ -17,10 +17,9 @@
  */
 package main;
 
-import ingameitems.Ball;
-import ingameitems.Brick;
-import ingameitems.CementBrick;
-import ingameitems.ClayBrick;
+import ingameitems.*;
+import main.Player;
+import main.SteelBrick;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
