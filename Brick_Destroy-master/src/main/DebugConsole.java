@@ -18,6 +18,7 @@
 package main;
 
 import ingameitems.Ball;
+import ingameitems.Wall;
 
 import javax.swing.*;
 import java.awt.*;

@@ -17,6 +17,8 @@
  */
 package main;
 
+import ingameitems.Wall;
+
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
