@@ -40,18 +40,19 @@ public class Player {
     public Player(Point ballPoint,int width,int height,Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
-        playerFace = makeRectangle(width, height);
+        playerFace = makePlayerFace(width, height);
         min = container.x + (width / 2);
         max = min + container.width - width;
 
     }
 
-    private Rectangle makeRectangle(int width,int height){
+    private Rectangle makePlayerFace(int width, int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
     }
 
     public boolean impact(Ball b){
+
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
 
