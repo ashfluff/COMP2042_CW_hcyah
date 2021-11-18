@@ -215,24 +215,42 @@ public class Wall {
             switch(impact) {
                 //Vertical Impact
                 case Brick.UP_IMPACT:
-                    ball.reverseY();
-                    return b.setImpact(ball.down, Brick.Crack.UP);
+                    return reactToUpImpact(b);
                 case Brick.DOWN_IMPACT:
-                    ball.reverseY();
-                    return b.setImpact(ball.up,Brick.Crack.DOWN);
+                    return reactToDownImpact(b);
 
                 //Horizontal Impact
                 case Brick.LEFT_IMPACT:
-                    ball.reverseX();
-                    return b.setImpact(ball.right,Brick.Crack.RIGHT);
+                    return reactToLeftImpact(b);
                 case Brick.RIGHT_IMPACT:
-                    ball.reverseX();
-                    return b.setImpact(ball.left,Brick.Crack.LEFT);
+                    return reactToRightImpact(b);
                 default:
                     throw  new IllegalArgumentException(String.format("Unknown Impact:%d\n",impact));
             }
         }
         return false;
+    }
+
+
+
+    private boolean reactToUpImpact(Brick b) {
+        ball.reverseY();
+        return b.setImpact(ball.down, Brick.Crack.UP);
+    }
+
+    private boolean reactToDownImpact(Brick b) {
+        ball.reverseY();
+        return b.setImpact(ball.up,Brick.Crack.DOWN);
+    }
+
+    private boolean reactToLeftImpact(Brick b) {
+        ball.reverseX();
+        return b.setImpact(ball.right,Brick.Crack.RIGHT);
+    }
+
+    private boolean reactToRightImpact(Brick b) {
+        ball.reverseX();
+        return b.setImpact(ball.left,Brick.Crack.LEFT);
     }
 
     private boolean impactBorder(){
