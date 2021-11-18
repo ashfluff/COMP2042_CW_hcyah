@@ -21,7 +21,9 @@ import main.brickdestroy.ui.GameFrame;
 
 import java.awt.*;
 
-
+/**
+ * This is the entry point of the game.
+ */
 public class BrickDestroyer {
 
     public static void main(String[] args){

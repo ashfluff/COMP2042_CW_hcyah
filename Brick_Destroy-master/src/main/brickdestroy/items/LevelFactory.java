@@ -3,6 +3,9 @@ package main.brickdestroy.items;
 import java.awt.*;
 import static main.brickdestroy.items.WallType.*;
 
+/**
+ * This class contains methods for constructing in-game levels.
+ */
 class LevelFactory {
     protected static Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
