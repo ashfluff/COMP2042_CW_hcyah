@@ -153,32 +153,44 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
+
+        int yCoordinate = drawGreetings(g2d, frc);
+
+        int yGameTitle = drawGameTitle(g2d, frc, yCoordinate);
+
+        drawCredits(g2d, frc, yGameTitle);
+    }
+
+
+    private int drawGreetings(Graphics2D g2d, FontRenderContext frc) {
         Rectangle2D greetingsRect = greetingsFont.getStringBounds(GREETINGS,frc);
-        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
-        Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
-
-        int XCoordinate,YCoordinate;
-
-        XCoordinate = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        YCoordinate = (int)(menuFace.getHeight() / 4);
+        int xCoordinate = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
+        int yCoordinate = (int)(menuFace.getHeight() / 4);
 
         g2d.setFont(greetingsFont);
-        g2d.drawString(GREETINGS,XCoordinate,YCoordinate);
+        g2d.drawString(GREETINGS,xCoordinate,yCoordinate);
+        return yCoordinate;
+    }
 
-        XCoordinate = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
-        YCoordinate += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
+    private int drawGameTitle(Graphics2D g2d, FontRenderContext frc, int yCoordinate) {
+        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
+        int xGameTitle = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
+        int yGameTitle = (int) (gameTitleRect.getHeight() * 1.1 + yCoordinate);//add 10% of String height between the two strings
 
         g2d.setFont(gameTitleFont);
-        g2d.drawString(GAME_TITLE,XCoordinate,YCoordinate);
+        g2d.drawString(GAME_TITLE,xGameTitle,yGameTitle);
+        return yGameTitle;
+    }
 
-        XCoordinate = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
-        YCoordinate += (int) creditsRect.getHeight() * 1.1;
+    private void drawCredits(Graphics2D g2d, FontRenderContext frc, int yGameTitle) {
+        Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
+        int xCredits = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
+        int yCredits = (int) (creditsRect.getHeight() * 1.1 + yGameTitle);
 
         g2d.setFont(creditsFont);
-        g2d.drawString(CREDITS,XCoordinate,YCoordinate);
-
-
+        g2d.drawString(CREDITS,xCredits,yCredits);
     }
+
 
     private void drawButton(Graphics2D g2d){
 
