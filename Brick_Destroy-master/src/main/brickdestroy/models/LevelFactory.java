@@ -7,7 +7,7 @@ import static main.brickdestroy.models.WallType.*;
  * This class contains methods for constructing in-game levels.
  */
 class LevelFactory {
-    protected static Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
+    protected static Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, WallType type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
           multiple of lineCount smaller then brickCount
@@ -47,7 +47,7 @@ class LevelFactory {
 
     }
 
-    protected static Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
+    protected static Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, WallType typeA, WallType typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
           multiple of lineCount smaller then brickCount
@@ -92,7 +92,7 @@ class LevelFactory {
         return tmp;
     }
 
-    private static Brick makeBrick(Point point, Dimension size, int type){
+    private static Brick makeBrick(Point point, Dimension size, WallType type){
         Brick out;
         switch(type){
             case CLAY:
