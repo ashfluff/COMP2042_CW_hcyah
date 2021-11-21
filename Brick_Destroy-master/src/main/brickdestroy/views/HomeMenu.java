@@ -164,12 +164,12 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private int drawGreetings(Graphics2D g2d, FontRenderContext frc) {
         Rectangle2D greetingsRect = greetingsFont.getStringBounds(GREETINGS,frc);
-        int xCoordinate = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        int yCoordinate = (int)(menuFace.getHeight() / 4);
+        int xGreetings = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
+        int yGreetings = (int)(menuFace.getHeight() / 4);
 
         g2d.setFont(greetingsFont);
-        g2d.drawString(GREETINGS,xCoordinate,yCoordinate);
-        return yCoordinate;
+        g2d.drawString(GREETINGS,xGreetings,yGreetings);
+        return yGreetings;
     }
 
     private int drawGameTitle(Graphics2D g2d, FontRenderContext frc, int yCoordinate) {
@@ -234,8 +234,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         y *= 1.2;
 
         exitButton.setLocation(x,y);
-
-
 
 
 
