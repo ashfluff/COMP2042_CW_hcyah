@@ -124,19 +124,22 @@ public class Wall {
 
     private boolean impactWall(){
         for(Brick b : bricks){
-            int impact = b.findImpact(ball);
+             Brick.ImpactDirection impact = b.findImpact(ball);
             switch(impact) {
                 //Vertical Impact
-                case Brick.UP_IMPACT:
+                case UP_IMPACT:
                     return reactToUpImpact(b);
-                case Brick.DOWN_IMPACT:
+                case DOWN_IMPACT:
                     return reactToDownImpact(b);
 
                 //Horizontal Impact
-                case Brick.LEFT_IMPACT:
+                case LEFT_IMPACT:
                     return reactToLeftImpact(b);
-                case Brick.RIGHT_IMPACT:
+                case RIGHT_IMPACT:
                     return reactToRightImpact(b);
+
+                    //else
+                case NO_IMPACT: continue;
             }
         }
         return false;

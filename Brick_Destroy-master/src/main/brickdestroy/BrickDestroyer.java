@@ -26,8 +26,7 @@ import java.awt.*;
  */
 public class BrickDestroyer {
 
-    public static void main(String[] args){
-        EventQueue.invokeLater(() -> new GameFrame().initialize());
+    public static void main(String[] args){ EventQueue.invokeLater(() -> new GameFrame().initialize());
     }
 
 }
