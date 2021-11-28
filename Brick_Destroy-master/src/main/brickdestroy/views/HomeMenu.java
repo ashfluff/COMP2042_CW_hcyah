@@ -35,9 +35,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String EXIT_TEXT = "Exit";
 
     private static final Color BG_COLOR = Color.GREEN.darker();
-    private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
-    private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    //private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
+    //private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
+    private static final Color TEXT_COLOR = new Color(255, 175, 175);//pink
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
@@ -64,7 +64,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     Image img;
 
     public HomeMenu(GameFrame owner,Dimension area){
-        img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/bgimage.png");
+        img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/Tiled_brick.png");
 
         this.setFocusable(true);
         this.requestFocusInWindow();
