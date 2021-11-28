@@ -24,7 +24,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
-import java.io.IOException;
 
 
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
@@ -62,8 +61,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean startClicked;
     private boolean exitClicked;
 
+    Image img;
 
     public HomeMenu(GameFrame owner,Dimension area){
+        img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/bgimage.png");
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -89,9 +90,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
         creditsFont = new Font("Monospaced",Font.PLAIN,10);
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
-
-
-
     }
 
 
@@ -128,24 +126,27 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
     private void drawContainer(Graphics2D g2d){
-        Color prev = g2d.getColor();
 
-        g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
+        //Color prev = g2d.getColor();
 
-        Stroke tmp = g2d.getStroke();
+        //g2d.setColor(BG_COLOR);
+        //g2d.fill(menuFace);
 
-        g2d.setStroke(borderStoke_noDashes);
-        g2d.setColor(DASH_BORDER_COLOR);
-        g2d.draw(menuFace);
+        //Stroke tmp = g2d.getStroke();
 
-        g2d.setStroke(borderStoke);
-        g2d.setColor(BORDER_COLOR);
-        g2d.draw(menuFace);
+        //g2d.setStroke(borderStoke_noDashes);
+        //g2d.setColor(DASH_BORDER_COLOR);
+        //g2d.draw(menuFace);
 
-        g2d.setStroke(tmp);
+        //g2d.setStroke(borderStoke);
+        //g2d.setColor(BORDER_COLOR);
+        //g2d.draw(menuFace);
 
-        g2d.setColor(prev);
+        //g2d.setStroke(tmp);
+
+       //g2d.setColor(prev);
+
+        g2d.drawImage(img, 0, 0, this);
     }
 
     private void drawText(Graphics2D g2d){

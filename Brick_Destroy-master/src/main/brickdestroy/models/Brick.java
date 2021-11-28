@@ -17,11 +17,6 @@ abstract public class Brick  {
     public static final int DEF_STEPS = 35;
 
 
-//    public static final int UP_IMPACT = 100;
-//    public static final int DOWN_IMPACT = 200;
-//    public static final int LEFT_IMPACT = 300;
-//    public static final int RIGHT_IMPACT = 400;
-
     enum ImpactDirection {
         UP_IMPACT,
         DOWN_IMPACT,
