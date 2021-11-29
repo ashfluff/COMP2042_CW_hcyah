@@ -257,18 +257,18 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
-    private void drawButtonClicked(Graphics2D g2d, int x, int y, boolean clickedType, Rectangle buttonType, String textType) {
-        if(clickedType){
+    private void drawButtonClicked(Graphics2D g2d, int x, int y, boolean buttonClickedType, Rectangle buttonType, String TEXT_TYPE) {
+        if(buttonClickedType){
             Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
             g2d.draw(buttonType);
             g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(textType,x,y);
+            g2d.drawString(TEXT_TYPE,x,y);
             g2d.setColor(tmp);
         }
         else{
             g2d.draw(buttonType);
-            g2d.drawString(textType,x,y);
+            g2d.drawString(TEXT_TYPE,x,y);
         }
     }
 
@@ -277,7 +277,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Point p = mouseEvent.getPoint();
         if(startButton.contains(p)){
            owner.enableGameBoard();
-
+        }
+        else if(instructionsButton.contains(p)) {
+            owner.enableInstructionsMenu();
         }
         else if(exitButton.contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
@@ -292,6 +294,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             startClicked = true;
             repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
         }
+        else if(instructionsButton.contains(p)) {
+            instructionsClicked = true;
+            repaint(instructionsButton.x,instructionsButton.y,instructionsButton.width+1,instructionsButton.height+1);
+        }
         else if(exitButton.contains(p)){
             exitClicked = true;
             repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
@@ -303,6 +309,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         if(startClicked ){
             startClicked = false;
             repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
+        }
+        else if(instructionsClicked) {
+            instructionsClicked = false;
+            repaint(instructionsButton.x,instructionsButton.y,instructionsButton.width+1,instructionsButton.height+1);
         }
         else if(exitClicked){
             exitClicked = false;
@@ -329,7 +339,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(startButton.contains(p) || exitButton.contains(p))
+        if(startButton.contains(p) || instructionsButton.contains(p) || exitButton.contains(p))
             this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
             this.setCursor(Cursor.getDefaultCursor());
