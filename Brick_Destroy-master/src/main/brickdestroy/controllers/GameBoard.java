@@ -62,6 +62,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
+    Image levelsImage;
+
 
     public GameBoard(JFrame owner){
         super();
@@ -111,8 +113,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             repaint();
         });
 
-    }
+        levelsImage = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/Dungeon.png");
 
+    }
 
 
     private void initialize(){
@@ -126,13 +129,15 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
 
     public void paint(Graphics g){
-
         Graphics2D g2d = (Graphics2D) g;
 
         clear(g2d);
 
         g2d.setColor(Color.BLUE);
         g2d.drawString(message,250,225);
+
+        g.drawImage(levelsImage, 0, 0, this);
+
 
         drawBall(wall.ball,g2d);
 

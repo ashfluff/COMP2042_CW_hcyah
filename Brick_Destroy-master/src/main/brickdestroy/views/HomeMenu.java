@@ -37,7 +37,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final Color BG_COLOR = Color.GREEN.darker();
     //private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
     //private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(255, 175, 175);//pink
+    private static final Color TEXT_COLOR = new Color(255, 204, 0);//dark yellow
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
@@ -236,8 +236,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         y *= 1.2;
 
         exitButton.setLocation(x,y);
-
-
 
         x = (int)(exitButton.getWidth() - mTxtRect.getWidth()) / 2;
         y = (int)(exitButton.getHeight() - mTxtRect.getHeight()) / 2;
