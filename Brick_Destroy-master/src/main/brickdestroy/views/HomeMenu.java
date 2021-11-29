@@ -32,6 +32,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String GAME_TITLE = "Brick Destroy";
     private static final String CREDITS = "Version 0.1";
     private static final String START_TEXT = "Start";
+    private static final String INSTRUCTIONS_TEXT = "Instructions";
     private static final String EXIT_TEXT = "Exit";
 
     private static final Color BG_COLOR = Color.GREEN.darker();
@@ -45,6 +46,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private Rectangle menuFace;
     private Rectangle startButton;
+    private Rectangle instructionsButton;
     private Rectangle exitButton;
 
 
@@ -59,6 +61,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private GameFrame owner;
 
     private boolean startClicked;
+    private boolean instructionsClicked;
     private boolean exitClicked;
 
     Image img;
@@ -79,8 +82,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         menuFace = new Rectangle(new Point(0,0),area);
         this.setPreferredSize(area);
 
-        Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
+        Dimension btnDim = new Dimension(area.width / 2, area.height / 12);
         startButton = new Rectangle(btnDim);
+        instructionsButton = new Rectangle(btnDim);
         exitButton = new Rectangle(btnDim);
 
         borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
@@ -198,23 +202,23 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT,frc);
-        Rectangle2D mTxtRect = buttonFont.getStringBounds(EXIT_TEXT,frc);
+        Rectangle2D startTextRect = buttonFont.getStringBounds(START_TEXT,frc);
+        Rectangle2D instructionsTextRect = buttonFont.getStringBounds(INSTRUCTIONS_TEXT, frc);
+        Rectangle2D exitTextRect = buttonFont.getStringBounds(EXIT_TEXT,frc);
 
         g2d.setFont(buttonFont);
 
         int x = (menuFace.width - startButton.width) / 2;
-        int y =(int) ((menuFace.height - startButton.height) * 0.8);
+        int y =(int) ((menuFace.height - startButton.height) * 0.6);
 
+        //draw start button
         startButton.setLocation(x,y);
 
-        x = (int)(startButton.getWidth() - txtRect.getWidth()) / 2;
-        y = (int)(startButton.getHeight() - txtRect.getHeight()) / 2;
+        x = (int)(startButton.getWidth() - startTextRect.getWidth()) / 2;
+        y = (int)(startButton.getHeight() - startTextRect.getHeight()) / 2;
 
         x += startButton.x;
         y += startButton.y + (startButton.height * 0.9);
-
-
 
 
         if(startClicked){
@@ -235,10 +239,38 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         y *= 1.2;
 
+        //draw instructions button
+        instructionsButton.setLocation(x,y);
+
+        x = (int)(instructionsButton.getWidth() - instructionsTextRect.getWidth()) / 2;
+        y = (int)(instructionsButton.getHeight() - instructionsTextRect.getHeight()) / 2;
+
+        x += instructionsButton.x;
+        y += instructionsButton.y + (instructionsButton.height * 0.9);
+
+        if(instructionsClicked){
+            Color tmp = g2d.getColor();
+            g2d.setColor(CLICKED_BUTTON_COLOR);
+            g2d.draw(instructionsButton);
+            g2d.setColor(CLICKED_TEXT);
+            g2d.drawString(INSTRUCTIONS_TEXT,x,y);
+            g2d.setColor(tmp);
+        }
+        else{
+            g2d.draw(instructionsButton);
+            g2d.drawString(INSTRUCTIONS_TEXT,x,y);
+        }
+
+        x = instructionsButton.x;
+        y = instructionsButton.y;
+
+        y *= 1.2;
+
+        //draw exit button
         exitButton.setLocation(x,y);
 
-        x = (int)(exitButton.getWidth() - mTxtRect.getWidth()) / 2;
-        y = (int)(exitButton.getHeight() - mTxtRect.getHeight()) / 2;
+        x = (int)(exitButton.getWidth() - exitTextRect.getWidth()) / 2;
+        y = (int)(exitButton.getHeight() - exitTextRect.getHeight()) / 2;
 
         x += exitButton.x;
         y += exitButton.y + (startButton.height * 0.9);
