@@ -221,18 +221,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         y += startButton.y + (startButton.height * 0.9);
 
 
-        if(startClicked){
-            Color tmp = g2d.getColor();
-            g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(startButton);
-            g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(START_TEXT,x,y);
-            g2d.setColor(tmp);
-        }
-        else{
-            g2d.draw(startButton);
-            g2d.drawString(START_TEXT,x,y);
-        }
+        drawButtonClicked(g2d, x, y, startClicked,startButton, START_TEXT);
 
         x = startButton.x;
         y = startButton.y;
@@ -248,18 +237,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         x += instructionsButton.x;
         y += instructionsButton.y + (instructionsButton.height * 0.9);
 
-        if(instructionsClicked){
-            Color tmp = g2d.getColor();
-            g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(instructionsButton);
-            g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(INSTRUCTIONS_TEXT,x,y);
-            g2d.setColor(tmp);
-        }
-        else{
-            g2d.draw(instructionsButton);
-            g2d.drawString(INSTRUCTIONS_TEXT,x,y);
-        }
+        drawButtonClicked(g2d, x, y, instructionsClicked,instructionsButton, INSTRUCTIONS_TEXT);
 
         x = instructionsButton.x;
         y = instructionsButton.y;
@@ -275,20 +253,23 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         x += exitButton.x;
         y += exitButton.y + (startButton.height * 0.9);
 
-        if(exitClicked){
-            Color tmp = g2d.getColor();
+        drawButtonClicked(g2d, x, y, exitClicked,exitButton, EXIT_TEXT);
 
+    }
+
+    private void drawButtonClicked(Graphics2D g2d, int x, int y, boolean clickedType, Rectangle buttonType, String textType) {
+        if(clickedType){
+            Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(exitButton);
+            g2d.draw(buttonType);
             g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(EXIT_TEXT,x,y);
+            g2d.drawString(textType,x,y);
             g2d.setColor(tmp);
         }
         else{
-            g2d.draw(exitButton);
-            g2d.drawString(EXIT_TEXT,x,y);
+            g2d.draw(buttonType);
+            g2d.drawString(textType,x,y);
         }
-
     }
 
     @Override
@@ -310,7 +291,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         if(startButton.contains(p)){
             startClicked = true;
             repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
-
         }
         else if(exitButton.contains(p)){
             exitClicked = true;
