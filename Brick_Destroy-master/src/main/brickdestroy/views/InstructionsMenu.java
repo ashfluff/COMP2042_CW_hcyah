@@ -24,9 +24,11 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
     private Rectangle returnButton;
     private boolean returnClicked;
 
+    GameFrame owner;
+
     Image img;
 
-    public InstructionsMenu(Dimension area) {
+    public InstructionsMenu(GameFrame owner, Dimension area) {
         img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/Tiled_brick.png");
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         menuFace = new Rectangle(new Point(0,0),area);
@@ -34,6 +36,8 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         this.requestFocusInWindow();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
+
+        this.owner = owner;
 
         Dimension btnDim = new Dimension(area.width / 4, area.height / 12);
         returnButton = new Rectangle(btnDim);
@@ -119,7 +123,7 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
     public void mouseClicked(MouseEvent e) {
         Point p = e.getPoint();
         if(returnButton.contains(p)){
-            //go back to menu page
+            owner.enableHomeMenu();
         }
     }
 
@@ -157,6 +161,10 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        Point p = e.getPoint();
+        if(returnButton.contains(p))
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        else
+            this.setCursor(Cursor.getDefaultCursor());
     }
 }
