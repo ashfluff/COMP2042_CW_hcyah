@@ -7,18 +7,22 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
-public class InstructionsMenu extends JComponent implements KeyListener, MouseListener, MouseMotionListener {
+public class InstructionsMenu extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String INSTRUCTIONS_TITLE = "Instructions";
+    private static final String RETURN_TEXT = "Return";
     private static final Color TITLE_COLOR = new Color(255, 204, 0);
+    private static final Color CLICKED_TEXT = Color.WHITE;
+
     private Font instructionsTitleFont;
+    private Font buttonFont;
 
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
     private Rectangle menuFace;
-    private Rectangle exitButton;
-    private boolean exitClicked;
+    private Rectangle returnButton;
+    private boolean returnClicked;
 
     Image img;
 
@@ -28,14 +32,14 @@ public class InstructionsMenu extends JComponent implements KeyListener, MouseLi
         menuFace = new Rectangle(new Point(0,0),area);
         this.setFocusable(true);
         this.requestFocusInWindow();
-        this.addKeyListener(this);
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
-        Dimension btnDim = new Dimension(area.width / 2, area.height / 12);
-        exitButton = new Rectangle(btnDim);
+        Dimension btnDim = new Dimension(area.width / 4, area.height / 12);
+        returnButton = new Rectangle(btnDim);
 
         instructionsTitleFont = new Font("Noto Mono",Font.PLAIN,30);
+        buttonFont = new Font("Monospaced",Font.PLAIN, returnButton.height-2);
     }
 
     public void paint(Graphics g){
@@ -55,7 +59,7 @@ public class InstructionsMenu extends JComponent implements KeyListener, MouseLi
 
         //methods calls
         drawTitle(g2d);
-        //drawButton(g2d);
+        drawButton(g2d);
         //end of methods calls
 
         g2d.translate(-x,-y);
@@ -70,43 +74,70 @@ public class InstructionsMenu extends JComponent implements KeyListener, MouseLi
         FontRenderContext frc = g2d.getFontRenderContext();
 
         Rectangle2D instructionsRect = instructionsTitleFont.getStringBounds(INSTRUCTIONS_TITLE,frc);
-        int xTitle = (int)(menuFace.getWidth() - instructionsRect.getWidth()) / 4;
-        int yTitle = (int)(menuFace.getHeight() / 5);
+        int xTitle = (int)(menuFace.getWidth() - instructionsRect.getWidth()) / 6;
+        int yTitle = (int)(menuFace.getHeight() / 8);
 
         g2d.setFont(instructionsTitleFont);
         g2d.drawString(INSTRUCTIONS_TITLE,xTitle,yTitle);
     }
 
+    private void drawButton(Graphics2D g2d) {
+        FontRenderContext frc = g2d.getFontRenderContext();
 
+        Rectangle2D buttonTextRect = buttonFont.getStringBounds(RETURN_TEXT,frc);
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+        g2d.setFont(buttonFont);
 
+        int x = (menuFace.width - returnButton.width) / 5;
+        int y =(int) ((menuFace.height - returnButton.height) * 1.5);
+
+        //draw start button
+        returnButton.setLocation(x,y);
+
+        x = (int)(returnButton.getWidth() - buttonTextRect.getWidth()) / 2;
+        y = (int)(returnButton.getHeight() - buttonTextRect.getHeight()) / 2;
+
+        x += returnButton.x;
+        y += returnButton.y + (returnButton.height * 0.9);
+
+        if(returnClicked){
+            Color tmp = g2d.getColor();
+            g2d.draw(returnButton);
+            g2d.setColor(CLICKED_TEXT);
+            g2d.drawString(RETURN_TEXT,x,y);
+            g2d.setColor(tmp);
+        }
+        else{
+            g2d.draw(returnButton);
+            g2d.drawString(RETURN_TEXT,x,y);
+        }
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
 
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        Point p = e.getPoint();
+        if(returnButton.contains(p)){
+            //go back to menu page
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        Point p = e.getPoint();
+        if(returnButton.contains(p)){
+            returnClicked = true;
+            repaint(returnButton.x,returnButton.y,returnButton.width+1,returnButton.height+1);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if(returnClicked ){
+            returnClicked = false;
+            repaint(returnButton.x,returnButton.y,returnButton.width+1,returnButton.height+1);
+        }
     }
 
     @Override
