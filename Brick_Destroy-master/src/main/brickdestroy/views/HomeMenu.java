@@ -33,6 +33,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String CREDITS = "Version 0.1";
     private static final String START_TEXT = "Start";
     private static final String INSTRUCTIONS_TEXT = "Instructions";
+    private static final String HIGHSCORE_TEXT = "Highscores";
     private static final String EXIT_TEXT = "Exit";
 
     private static final Color BG_COLOR = Color.GREEN.darker();
@@ -47,6 +48,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Rectangle menuFace;
     private Rectangle startButton;
     private Rectangle instructionsButton;
+    private Rectangle highscoreButton;
     private Rectangle exitButton;
 
 
@@ -62,6 +64,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private boolean startClicked;
     private boolean instructionsClicked;
+    private boolean highscoreClicked;
     private boolean exitClicked;
 
     Image img;
@@ -85,6 +88,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Dimension btnDim = new Dimension(area.width / 2, area.height / 12);
         startButton = new Rectangle(btnDim);
         instructionsButton = new Rectangle(btnDim);
+        highscoreButton = new Rectangle(btnDim);
         exitButton = new Rectangle(btnDim);
 
         borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
@@ -242,7 +246,23 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         x = instructionsButton.x;
         y = instructionsButton.y;
 
-        y *= 1.2;
+        y *= 1.17;
+
+        //draw highscore button
+        highscoreButton.setLocation(x,y);
+
+        x = (int)(highscoreButton.getWidth() - instructionsTextRect.getWidth()) / 2;
+        y = (int)(highscoreButton.getHeight() - instructionsTextRect.getHeight()) / 2;
+
+        x += highscoreButton.x;
+        y += highscoreButton.y + (highscoreButton.height * 0.9);
+
+        drawButtonClicked(g2d, x, y, highscoreClicked,highscoreButton, HIGHSCORE_TEXT);
+
+        x = highscoreButton.x;
+        y = highscoreButton.y;
+
+        y *= 1.15;
 
         //draw exit button
         exitButton.setLocation(x,y);
@@ -281,6 +301,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         else if(instructionsButton.contains(p)) {
             owner.enableInstructionsMenu();
         }
+        else if(highscoreButton.contains(p)) {
+            owner.enableHighscoreMenu();
+        }
         else if(exitButton.contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
@@ -298,6 +321,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             instructionsClicked = true;
             repaint(instructionsButton.x,instructionsButton.y,instructionsButton.width+1,instructionsButton.height+1);
         }
+        else if(highscoreButton.contains(p)) {
+            highscoreClicked = true;
+            repaint(highscoreButton.x,highscoreButton.y,highscoreButton.width+1,highscoreButton.height+1);
+        }
         else if(exitButton.contains(p)){
             exitClicked = true;
             repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
@@ -313,6 +340,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         else if(instructionsClicked) {
             instructionsClicked = false;
             repaint(instructionsButton.x,instructionsButton.y,instructionsButton.width+1,instructionsButton.height+1);
+        }
+        else if(highscoreClicked) {
+            highscoreClicked = false;
+            repaint(highscoreButton.x,highscoreButton.y,highscoreButton.width+1,highscoreButton.height+1);
         }
         else if(exitClicked){
             exitClicked = false;
@@ -339,7 +370,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(startButton.contains(p) || instructionsButton.contains(p) || exitButton.contains(p))
+        if(startButton.contains(p) || instructionsButton.contains(p) || highscoreButton.contains(p) || exitButton.contains(p))
             this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
             this.setCursor(Cursor.getDefaultCursor());
