@@ -44,6 +44,7 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         this.addMouseMotionListener(this);
 
         this.owner = owner;
+        owner.setResizable(false);
 
         Dimension btnDim = new Dimension(area.width / 4, area.height / 12);
         returnButton = new Rectangle(btnDim);

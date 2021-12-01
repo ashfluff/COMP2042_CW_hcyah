@@ -40,6 +40,7 @@ public class HighscoreMenu extends JComponent implements MouseListener, MouseMot
         this.addMouseMotionListener(this);
 
         this.owner = owner;
+        owner.setResizable(false);
 
         Dimension btnDim = new Dimension(area.width / 4, area.height / 12);
         returnButton = new Rectangle(btnDim);

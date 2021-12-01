@@ -79,6 +79,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         this.addMouseMotionListener(this);
 
         this.owner = owner;
+        owner.setResizable(false);
 
 
 
