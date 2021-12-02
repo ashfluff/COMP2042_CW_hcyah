@@ -27,7 +27,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
-
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
@@ -61,6 +62,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private int strLen;
 
     private DebugConsole debugConsole;
+
+    private int score;
 
     Image levelsImage;
 
@@ -100,14 +103,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             }
             else if(wall.isDone()){
                 if(wall.hasLevel()){
-                    message = "Go to Next Level";
+                    message = "Current score: " + score + "\nGo to Next Level";
                     gameTimer.stop();
                     wall.ballReset();
                     wall.wallReset();
                     wall.nextLevel();
                 }
                 else{
-                    message = "ALL WALLS DESTROYED";
+                    message = "Total score: " + score + "\nALL WALLS DESTROYED";
                     gameTimer.stop();
                 }
             }
@@ -135,13 +138,20 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         clear(g2d);
 
-        g2d.setColor(Color.BLUE);
-        g2d.drawString(message,250,225);
-
         g.drawImage(levelsImage, 0, 0, this);
+
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(message,250,225);
 
 
         drawBall(wall.ball,g2d);
+
+        Stream<Boolean> booleanStream = Arrays.stream(wall.bricks).map(brick -> brick.isBroken());
+        //System.out.println("\n - " + wall.bricks.length);
+        int numberOfBrokenBricks = booleanStream.filter(bool -> bool == true).toArray().length;
+        score = numberOfBrokenBricks;
+        System.out.println("The score is " + score);
+        //booleanStream.forEach(b -> System.out.print(b.toString() + ","));
 
         for(Brick b : wall.bricks)
             if(!b.isBroken())

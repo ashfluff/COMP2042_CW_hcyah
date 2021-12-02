@@ -250,7 +250,8 @@ abstract public class Brick  {
 
     public void impact(){
         strength--;
-        broken = (strength == 0);
+        boolean isStrengthZero = strength == 0;
+        this.broken = isStrengthZero;
     }
 
 
