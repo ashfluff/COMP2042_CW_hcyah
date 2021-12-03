@@ -97,7 +97,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
                     wall.wallReset();
-                    message = "Game over" + "\nScore: " + score;
+                    message = "Game over! Score: " + score;
                     try {
                         FileController.appendToFile(score);
                     } catch (IOException ioException) {
@@ -109,14 +109,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             }
             else if(wall.isDone()){
                 if(wall.hasLevel()){
-                    message = "Current score: " + score + "\nGo to Next Level";
+                    message = "Go to Next Level! Current score: " + score;
                     gameTimer.stop();
                     wall.ballReset();
                     wall.wallReset();
                     wall.nextLevel();
                 }
                 else{
-                    message = "Total score: " + score + "\nALL WALLS DESTROYED";
+                    message = "ALL WALLS DESTROYED! Total score: " + score;
                     gameTimer.stop();
                     try {
                         FileController.appendToFile(score);

@@ -16,11 +16,11 @@ public class FileController {
         writer.close();
     }
 
-    public static String[] readFromFile() throws IOException {
+    public static Integer[] readFromFile() throws IOException {
          Stream<String> stream = Files.lines(Paths.get(".\\scores.txt"));
-         return stream.sorted().toArray(String[]::new);
+         return stream.map(x -> Integer.valueOf(x)).sorted().toArray(Integer[]::new);
          //to convert array to string
-        //String.join("\n", stream.sorted().toArray(String[]::new));
+        //return String.join("\n", stream.sorted().toArray(String[]::new));
     }
 
 }

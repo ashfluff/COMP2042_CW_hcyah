@@ -23,6 +23,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.io.IOException;
 
 
 public class GameFrame extends JFrame implements WindowFocusListener {
@@ -36,7 +37,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
-    public GameFrame(){
+    public GameFrame() throws IOException {
         super();
 
         gaming = false;

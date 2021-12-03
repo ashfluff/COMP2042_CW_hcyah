@@ -20,13 +20,21 @@ package main.brickdestroy;
 import main.brickdestroy.views.GameFrame;
 
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * This is the entry point of the game.
  */
 public class BrickDestroyer {
 
-    public static void main(String[] args){ EventQueue.invokeLater(() -> new GameFrame().initialize());
+    public static void main(String[] args){
+        EventQueue.invokeLater(() -> {
+            try {
+                new GameFrame().initialize();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }

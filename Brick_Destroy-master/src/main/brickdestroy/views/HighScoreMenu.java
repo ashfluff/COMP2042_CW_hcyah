@@ -1,5 +1,7 @@
 package main.brickdestroy.views;
 
+import main.brickdestroy.controllers.FileController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -7,6 +9,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class HighScoreMenu extends JComponent implements MouseListener, MouseMotionListener {
 
@@ -29,11 +34,13 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
     GameFrame owner;
 
     private  String message;
+    Font messageFont;
+    private int scoresToPrint = 10;
 
     Image img;
 
-    public HighScoreMenu(GameFrame owner, Dimension area) {
-        message = "";
+    public HighScoreMenu(GameFrame owner, Dimension area) throws IOException {
+        //message = sortScores();
         img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/Tiled_brick.png");
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         menuFace = new Rectangle(new Point(0,0),area);
@@ -50,6 +57,7 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
 
         highScoreTitleFont = new Font("Noto Mono",Font.PLAIN,30);
         buttonFont = new Font("Monospaced",Font.PLAIN, returnButton.height-2);
+        messageFont = new Font ("Courier New", 1, 20);
     }
 
     public void paint(Graphics g){
@@ -57,6 +65,7 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
         drawMenu((Graphics2D)g);
 
         g.setColor(Color.WHITE);
+        g.setFont(messageFont);
         g.drawString(message,250,225);
     }
 
@@ -92,6 +101,13 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
 
         g2d.setFont(highScoreTitleFont);
         g2d.drawString(HIGHSCORE_TITLE,xTitle,yTitle);
+    }
+
+    private Integer[] sortScores() throws IOException {
+        Integer[] scores = FileController.readFromFile();
+        Arrays.sort(scores, Collections.reverseOrder());
+        return scores;
+        //return Arrays.toString(Arrays.stream(scores).limit(scoresToPrint).toArray());
     }
 
     private void drawButton(Graphics2D g2d) {
