@@ -8,15 +8,15 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
-public class HighscoreMenu extends JComponent implements MouseListener, MouseMotionListener {
+public class HighScoreMenu extends JComponent implements MouseListener, MouseMotionListener {
 
-    private static final String HIGHSCORE_TITLE = "Highscores";
+    private static final String HIGHSCORE_TITLE = "High Scores";
     private static final String RETURN_TEXT = "Return";
 
     private static final Color TEXT_COLOR = new Color(255, 204, 0);
     private static final Color CLICKED_BUTTON = Color.WHITE;
 
-    private Font highscoreTitleFont;
+    private Font highScoreTitleFont;
     private Font buttonFont;
 
     private static final int DEF_WIDTH = 600;
@@ -28,9 +28,12 @@ public class HighscoreMenu extends JComponent implements MouseListener, MouseMot
 
     GameFrame owner;
 
+    private  String message;
+
     Image img;
 
-    public HighscoreMenu(GameFrame owner, Dimension area) {
+    public HighScoreMenu(GameFrame owner, Dimension area) {
+        message = "";
         img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/Tiled_brick.png");
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         menuFace = new Rectangle(new Point(0,0),area);
@@ -45,13 +48,16 @@ public class HighscoreMenu extends JComponent implements MouseListener, MouseMot
         Dimension btnDim = new Dimension(area.width / 4, area.height / 12);
         returnButton = new Rectangle(btnDim);
 
-        highscoreTitleFont = new Font("Noto Mono",Font.PLAIN,30);
+        highScoreTitleFont = new Font("Noto Mono",Font.PLAIN,30);
         buttonFont = new Font("Monospaced",Font.PLAIN, returnButton.height-2);
     }
 
     public void paint(Graphics g){
         g.drawImage(img, 0, 0, this);
         drawMenu((Graphics2D)g);
+
+        g.setColor(Color.WHITE);
+        g.drawString(message,250,225);
     }
 
     public void drawMenu(Graphics2D g2d){
@@ -80,11 +86,11 @@ public class HighscoreMenu extends JComponent implements MouseListener, MouseMot
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D instructionsRect = highscoreTitleFont.getStringBounds(HIGHSCORE_TITLE,frc);
+        Rectangle2D instructionsRect = highScoreTitleFont.getStringBounds(HIGHSCORE_TITLE,frc);
         int xTitle = (int)(menuFace.getWidth() - instructionsRect.getWidth()) / 6;
         int yTitle = (int)(menuFace.getHeight() / 8);
 
-        g2d.setFont(highscoreTitleFont);
+        g2d.setFont(highScoreTitleFont);
         g2d.drawString(HIGHSCORE_TITLE,xTitle,yTitle);
     }
 

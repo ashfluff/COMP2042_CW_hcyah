@@ -32,7 +32,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
     private InstructionsMenu instructionsMenu;
-    private HighscoreMenu highscoreMenu;
+    private HighScoreMenu highscoreMenu;
 
     private boolean gaming;
 
@@ -47,7 +47,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         instructionsMenu = new InstructionsMenu(this, new Dimension(450, 300));
 
-        highscoreMenu = new HighscoreMenu(this, new Dimension(450, 300));
+        highscoreMenu = new HighScoreMenu(this, new Dimension(450, 300));
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
 

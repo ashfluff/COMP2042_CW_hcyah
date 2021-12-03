@@ -27,6 +27,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -96,7 +97,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
                     wall.wallReset();
-                    message = "Game over";
+                    message = "Game over" + "\nScore: " + score;
+                    try {
+                        FileController.appendToFile(score);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
                 wall.ballReset();
                 gameTimer.stop();
@@ -112,6 +118,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 else{
                     message = "Total score: " + score + "\nALL WALLS DESTROYED";
                     gameTimer.stop();
+                    try {
+                        FileController.appendToFile(score);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
             }
 
