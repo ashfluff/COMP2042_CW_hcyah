@@ -25,7 +25,10 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.io.IOException;
 
-
+/**
+ * This class directs the user to different parts of the game, i.e. game, home menu, instructions menu, etc.
+ * It also automatically sets all the windows in the middle of the user's screen.
+ */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -33,7 +36,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
     private InstructionsMenu instructionsMenu;
-    private HighScoreMenu highscoreMenu;
+    private HighScoreBoard highscoreBoard;
 
     private boolean gaming;
 
@@ -48,7 +51,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         instructionsMenu = new InstructionsMenu(this, new Dimension(450, 300));
 
-        highscoreMenu = new HighScoreMenu(this, new Dimension(450, 300));
+        highscoreBoard = new HighScoreBoard(this, new Dimension(450, 300));
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
 
@@ -59,6 +62,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * This method initializes the window that opens the game.
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,6 +73,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
+    /**
+     * This method closes the home menu window and redirects the user to the game board window where they will play the game.
+     */
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenu);
@@ -78,6 +87,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * This method closes the home menu window and redirects the user to the instructions menu window.
+     */
     public void enableInstructionsMenu() {
         this.dispose();
         this.remove(homeMenu);
@@ -87,25 +99,34 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * This method closes the instructions menu or the high score board windows and redirects the user to the home menu.
+     */
     public void enableHomeMenu() {
         this.dispose();
         this.remove(instructionsMenu);
-        this.remove(highscoreMenu);
+        this.remove(highscoreBoard);
         this.add(homeMenu,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
         this.addWindowFocusListener(this);
     }
 
-    public void enableHighscoreMenu() {
+    /**
+     * This method closes the home menu window and redirects the user to the high score menu window.
+     */
+    public void enableHighScoreMenu() {
         this.dispose();
         this.remove(homeMenu);
-        this.add(highscoreMenu,BorderLayout.CENTER);
+        this.add(highscoreBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * This methods measures the user's screen and automatically sets the game's windows in the middle of the screen.
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;

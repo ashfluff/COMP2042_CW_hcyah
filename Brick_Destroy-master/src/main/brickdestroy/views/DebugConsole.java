@@ -25,6 +25,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+/**
+ * This class draws the frame of the debug console panel.
+ */
 
 public class DebugConsole extends JDialog implements WindowListener{
 
@@ -51,6 +54,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.pack();
     }
 
+    /**
+     * This method initializes the creation of the debug console panel.
+     */
     private void initialize(){
         this.setModal(true);
         this.setTitle(TITLE);
@@ -60,7 +66,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.setFocusable(true);
     }
 
-
+    /**
+     * This method automatically sets the locations of the debug console panel on the user's screen.
+     */
     private void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();

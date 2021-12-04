@@ -13,7 +13,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class HighScoreMenu extends JComponent implements MouseListener, MouseMotionListener {
+/**
+ * This class draws the contents of the high score board for the game.
+ */
+
+public class HighScoreBoard extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String HIGH_SCORE_TITLE = "High Scores";
     private static final String RETURN_TEXT = "Return";
@@ -39,7 +43,7 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
 
     Image img;
 
-    public HighScoreMenu(GameFrame owner, Dimension area) throws IOException {
+    public HighScoreBoard(GameFrame owner, Dimension area) throws IOException {
         message = displayScores();
         img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/Tiled_brick.png");
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
@@ -60,6 +64,10 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
         messageFont = new Font ("Courier New", 1, 20);
     }
 
+    /**
+     * This method initialises the drawing of the menu as well as the high score message it displays.
+     * @param g
+     */
     public void paint(Graphics g){
         g.drawImage(img, 0, 0, this);
         drawMenu((Graphics2D)g);
@@ -69,6 +77,10 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
         g.drawString(message,160,225);
     }
 
+    /**
+     * This methods draws the menu of the high score board.
+     * @param g2d
+     */
     public void drawMenu(Graphics2D g2d){
 
         Color prevColor = g2d.getColor();
@@ -89,6 +101,10 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
         g2d.setColor(prevColor);
     }
 
+    /**
+     * This method draws the title of the high score board.
+     * @param g2d
+     */
     private void drawTitle(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -103,14 +119,21 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
         g2d.drawString(HIGH_SCORE_TITLE,xTitle,yTitle);
     }
 
-
+    /**
+     * This method displays the high scores retrieved from the file. It sorts the scores in descending order and only displays the top ten scores.
+     * @return Returns the top ten scores as a string.
+     * @throws IOException
+     */
     private String displayScores() throws IOException {
         Integer[] scores = FileController.readFromFile();
         Arrays.sort(scores, Collections.reverseOrder());
         return Arrays.toString(Arrays.stream(scores).limit(scoresToPrint).toArray());
     }
 
-
+    /**
+     * This method draws the return button for the high score board to return to the home menu.
+     * @param g2d
+     */
     private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
@@ -121,7 +144,7 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
         int x = (menuFace.width - returnButton.width) / 5;
         int y =(int) ((menuFace.height - returnButton.height) * 1.5);
 
-        //draw start button
+        //draw return button
         returnButton.setLocation(x,y);
 
         x = (int)(returnButton.getWidth() - buttonTextRect.getWidth()) / 2;

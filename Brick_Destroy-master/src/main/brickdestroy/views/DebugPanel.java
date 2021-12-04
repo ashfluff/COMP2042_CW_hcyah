@@ -25,7 +25,10 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 
-
+/**
+ * This class draws the contents debug console panel of the game.
+ * Users can choose to skip level, reset balls and adjust the speed of the balls here.
+ */
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
@@ -59,17 +62,29 @@ public class DebugPanel extends JPanel {
 
     }
 
+    /**
+     * This method draws the layout of the debug console panel.
+     */
     private void initialize(){
         this.setBackground(DEF_BKG);
         this.setLayout(new GridLayout(2,2));
     }
 
+    /**
+     * This method creates the button of the debug console panel.
+     * @param title Creates the name of the button
+     */
     private JButton makeButton(String title, ActionListener e){
         JButton out = new JButton(title);
         out.addActionListener(e);
         return  out;
     }
 
+    /**
+     * This method creates the slider of the debug console panel.
+     * @param min Sets the minimum value of the slider
+     * @param max Sets the maximum value of the slider
+     */
     private JSlider makeSlider(int min, int max, ChangeListener e){
         JSlider out = new JSlider(min,max);
         out.setMajorTickSpacing(1);
@@ -79,6 +94,11 @@ public class DebugPanel extends JPanel {
         return out;
     }
 
+    /**
+     * This method provides the ball the velocity of its x- and y-coordinate.
+     * @param x x-coordinate speed of the ball
+     * @param y x-coordinate speed of the ball
+     */
     public void setValues(int x,int y){
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);

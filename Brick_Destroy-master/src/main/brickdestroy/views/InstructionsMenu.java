@@ -7,6 +7,10 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * This class draws the contents of the instructions menu of the game.
+ */
+
 public class InstructionsMenu extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String INSTRUCTIONS_TITLE = "Instructions";
@@ -54,11 +58,19 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         buttonFont = new Font("Monospaced",Font.PLAIN, returnButton.height-2);
     }
 
+    /**
+     * This method initializes the drawing of the instructions menu.
+     * @param g
+     */
     public void paint(Graphics g){
         g.drawImage(img, 0, 0, this);
         drawMenu((Graphics2D)g);
     }
 
+    /**
+     * This method draws the texts and buttons of the instructions menu.
+     * @param g2d
+     */
     public void drawMenu(Graphics2D g2d){
 
         Color prevColor = g2d.getColor();
@@ -83,6 +95,10 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         g2d.setColor(prevColor);
     }
 
+    /**
+     * This class draws the title of the instructions menu.
+     * @param g2d
+     */
     private void drawTitle(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -97,6 +113,10 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         g2d.drawString(INSTRUCTIONS_TITLE,xTitle,yTitle);
     }
 
+    /**
+     * This class draws the instruction text for the A key.
+     * @param g2d
+     */
     private void drawAKeyInstructions(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -111,6 +131,10 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         g2d.drawString(AKEY_TEXT,xText,yText);
     }
 
+    /**
+     * This class draws the instruction text for the D key.
+     * @param g2d
+     */
     private void drawDKeyInstructions(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -125,6 +149,10 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         g2d.drawString(DKEY_TEXT,xText,yText);
     }
 
+    /**
+     * This class draws the instruction text for the space bar.
+     * @param g2d
+     */
     private void drawSpaceBarInstructions(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -139,6 +167,10 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         g2d.drawString(SPACEBAR_TEXT,xText,yText);
     }
 
+    /**
+     * This class draws the instruction text to open up the debug console.
+     * @param g2d
+     */
     private void drawDebugConsoleInstructions(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -153,6 +185,10 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         g2d.drawString(DEBUG_CONSOLE_TEXT,xText,yText);
     }
 
+    /**
+     * This method draws the return button for the instructions menu to return to the home menu.
+     * @param g2d
+     */
     private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
@@ -163,7 +199,7 @@ public class InstructionsMenu extends JComponent implements MouseListener, Mouse
         int x = (menuFace.width - returnButton.width) / 5;
         int y =(int) ((menuFace.height - returnButton.height) * 1.5);
 
-        //draw start button
+        //draw return button
         returnButton.setLocation(x,y);
 
         x = (int)(returnButton.getWidth() - buttonTextRect.getWidth()) / 2;

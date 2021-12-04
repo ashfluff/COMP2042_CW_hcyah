@@ -25,6 +25,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * This class draws the contents of the first page (Home Menu) of the game.
+ */
+
 
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
 
@@ -33,12 +37,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String CREDITS = "Version 0.1";
     private static final String START_TEXT = "Start";
     private static final String INSTRUCTIONS_TEXT = "Instructions";
-    private static final String HIGHSCORE_TEXT = "Highscores";
+    private static final String HIGHSCORE_TEXT = "High Scores";
     private static final String EXIT_TEXT = "Exit";
 
     private static final Color BG_COLOR = Color.GREEN.darker();
-    //private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
-    //private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
     private static final Color TEXT_COLOR = new Color(255, 204, 0);//dark yellow
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
@@ -66,6 +68,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean instructionsClicked;
     private boolean highscoreClicked;
     private boolean exitClicked;
+
+    private double instrButtonDistance = 1.2;
+    private double highScoreButtonDistance = 1.17;
+    private double exitButtonDistance = 1.15;
 
     Image img;
 
@@ -101,12 +107,18 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
     }
 
-
+    /**
+     * This method initialises the drawing of the home menu.
+     * @param g
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
-
+    /**
+     * This method draws the background, text, and buttons of the home menu.
+     * @param g2d
+     */
     public void drawMenu(Graphics2D g2d){
 
         g2d.drawImage(img, 0, 0, this);
@@ -133,8 +145,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setFont(prevFont);
         g2d.setColor(prevColor);
     }
-    
 
+    /**
+     * This method draws the texts of the home menu, i.e. the greetings, game title and credits.
+     * @param g2d
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -179,7 +194,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.drawString(CREDITS,xCredits,yCredits);
     }
 
-
+    /**
+     * Draws the buttons for the home menu, i.e. start button, instructions button, high score button and exit button.
+     * @param g2d
+     */
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -208,7 +226,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         x = startButton.x;
         y = startButton.y;
 
-        y *= 1.2;
+        y *= instrButtonDistance;
 
         //draw instructions button
         instructionsButton.setLocation(x,y);
@@ -224,9 +242,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         x = instructionsButton.x;
         y = instructionsButton.y;
 
-        y *= 1.17;
+        y *= highScoreButtonDistance;
 
-        //draw highscore button
+        //draw high score button
         highscoreButton.setLocation(x,y);
 
         x = (int)(highscoreButton.getWidth() - instructionsTextRect.getWidth()) / 2;
@@ -240,7 +258,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         x = highscoreButton.x;
         y = highscoreButton.y;
 
-        y *= 1.15;
+        y *= exitButtonDistance;
 
         //draw exit button
         exitButton.setLocation(x,y);
@@ -254,6 +272,16 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         drawButtonClicked(g2d, x, y, exitClicked,exitButton, EXIT_TEXT);
 
     }
+
+    /**
+     * This method draws how the button should look after it is clicked.
+     * @param g2d
+     * @param x The x-coordinate of the button location.
+     * @param y The y-coordinate of the button location.
+     * @param buttonClickedType The name of button clicked.
+     * @param buttonType The name of the button.
+     * @param TEXT_TYPE The text that should be shown on the button.
+     */
 
     private void drawButtonClicked(Graphics2D g2d, int x, int y, boolean buttonClickedType, Rectangle buttonType, String TEXT_TYPE) {
         if(buttonClickedType){
@@ -270,6 +298,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -280,7 +309,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             owner.enableInstructionsMenu();
         }
         else if(highscoreButton.contains(p)) {
-            owner.enableHighscoreMenu();
+            owner.enableHighScoreMenu();
         }
         else if(exitButton.contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
