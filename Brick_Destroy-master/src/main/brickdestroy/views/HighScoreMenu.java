@@ -40,7 +40,7 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
     Image img;
 
     public HighScoreMenu(GameFrame owner, Dimension area) throws IOException {
-        //message = sortScores();
+        message = displayScores();
         img = Toolkit.getDefaultToolkit().getImage("Brick_Destroy-master/Tiled_brick.png");
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         menuFace = new Rectangle(new Point(0,0),area);
@@ -66,7 +66,7 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
 
         g.setColor(Color.WHITE);
         g.setFont(messageFont);
-        g.drawString(message,250,225);
+        g.drawString(message,160,225);
     }
 
     public void drawMenu(Graphics2D g2d){
@@ -103,12 +103,13 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
         g2d.drawString(HIGHSCORE_TITLE,xTitle,yTitle);
     }
 
-    private Integer[] sortScores() throws IOException {
+
+    private String displayScores() throws IOException {
         Integer[] scores = FileController.readFromFile();
         Arrays.sort(scores, Collections.reverseOrder());
-        return scores;
-        //return Arrays.toString(Arrays.stream(scores).limit(scoresToPrint).toArray());
+        return Arrays.toString(Arrays.stream(scores).limit(scoresToPrint).toArray());
     }
+
 
     private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
