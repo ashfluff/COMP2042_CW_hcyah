@@ -15,7 +15,7 @@ import java.util.Collections;
 
 public class HighScoreMenu extends JComponent implements MouseListener, MouseMotionListener {
 
-    private static final String HIGHSCORE_TITLE = "High Scores";
+    private static final String HIGH_SCORE_TITLE = "High Scores";
     private static final String RETURN_TEXT = "Return";
 
     private static final Color TEXT_COLOR = new Color(255, 204, 0);
@@ -35,7 +35,7 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
 
     private  String message;
     Font messageFont;
-    private int scoresToPrint = 10;
+    private int scoresToPrint = 9;
 
     Image img;
 
@@ -95,12 +95,12 @@ public class HighScoreMenu extends JComponent implements MouseListener, MouseMot
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D instructionsRect = highScoreTitleFont.getStringBounds(HIGHSCORE_TITLE,frc);
+        Rectangle2D instructionsRect = highScoreTitleFont.getStringBounds(HIGH_SCORE_TITLE,frc);
         int xTitle = (int)(menuFace.getWidth() - instructionsRect.getWidth()) / 6;
         int yTitle = (int)(menuFace.getHeight() / 8);
 
         g2d.setFont(highScoreTitleFont);
-        g2d.drawString(HIGHSCORE_TITLE,xTitle,yTitle);
+        g2d.drawString(HIGH_SCORE_TITLE,xTitle,yTitle);
     }
 
 
