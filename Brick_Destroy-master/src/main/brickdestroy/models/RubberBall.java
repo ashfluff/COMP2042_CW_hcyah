@@ -22,6 +22,10 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
+/**
+ * This class contains methods that draws the physical appearance of the ball such as its shape and colour.
+ */
+
 public class RubberBall extends Ball {
 
 

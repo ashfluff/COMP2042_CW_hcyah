@@ -21,7 +21,10 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
+/**
+ * This class contains all the properties of a steel brick.
+ * It also has all the properties of a brick.
+ */
 public class SteelBrick extends Brick {
 
     private static final String NAME = "Steel Brick";

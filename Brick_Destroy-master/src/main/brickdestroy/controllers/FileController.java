@@ -7,6 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+/**
+ * This class contains methods that saves all high scores into a file as well as retrieves it.
+ */
+
 public class FileController {
 
     public static void appendToFile(int score) throws IOException {

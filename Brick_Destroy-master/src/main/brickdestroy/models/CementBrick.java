@@ -5,7 +5,10 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
-
+/**
+ * This class contains all the properties of a cement brick.
+ * It also has all the properties of a brick.
+ */
 public class CementBrick extends Brick {
 
 

@@ -5,8 +5,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * This class has the properties of the ball in the game such as its speed and movement direction.
  */
  public abstract class Ball {
 
@@ -50,36 +49,58 @@ import java.awt.geom.RectangularShape;
 
     protected abstract Shape makeBall(Point2D center,int radiusA,int radiusB);
 
+    /**
+     * This method sets the location in which the ball is allowed to move, as well as its starting location.
+     */
     public void move(){
         RectangularShape tmp = (RectangularShape) ballFace;
         center.setLocation((center.getX() + speedX),(center.getY() + speedY));
-        double w = tmp.getWidth();
-        double h = tmp.getHeight();
+        double width = tmp.getWidth();
+        double height = tmp.getHeight();
 
-        tmp.setFrame((center.getX() -(w / 2)),(center.getY() - (h / 2)),w,h);
-        setPoints(w,h);
+        tmp.setFrame((center.getX() -(width / 2)),(center.getY() - (height / 2)),width,height);
+        setPoints(width,height);
 
 
         ballFace = tmp;
     }
 
+    /**
+     * This method sets the speed of the ball in the x- and y-coordinate.
+     * @param x Speed of the ball in the x-coordinate
+     * @param y Speed of the ball in the y-coordinate
+     */
     public void setSpeed(int x,int y){
         speedX = x;
         speedY = y;
     }
 
+    /**
+     * This method sets the speed of the ball in the x-coordinate.
+     * @param s Speed of the ball in the x-coordinate
+     */
     public void setXSpeed(int s){
         speedX = s;
     }
 
+    /**
+     * This method sets the speed of the ball in the y-coordinate.
+     * @param s Speed of the ball in the y-coordinate
+     */
     public void setYSpeed(int s){
         speedY = s;
     }
 
+    /**
+     * This method allows the ball to go in the opposite direction in the x plane.
+     */
     public void reverseX(){
         speedX *= -1;
     }
 
+    /**
+     * This method allows the ball to go in the opposite direction in the x plane.
+     */
     public void reverseY(){
         speedY *= -1;
     }
@@ -100,17 +121,26 @@ import java.awt.geom.RectangularShape;
         return ballFace;
     }
 
+    /**
+     * This method moves the ball to a specified location within the game window.
+     * @param p The x-coordinate of the location you want the ball to move.
+     */
     public void moveTo(Point p){
         center.setLocation(p);
 
         RectangularShape tmp = (RectangularShape) ballFace;
-        double w = tmp.getWidth();
-        double h = tmp.getHeight();
+        double width = tmp.getWidth();
+        double height = tmp.getHeight();
 
-        tmp.setFrame((center.getX() -(w / 2)),(center.getY() - (h / 2)),w,h);
+        tmp.setFrame((center.getX() -(width / 2)),(center.getY() - (height / 2)),width,height);
         ballFace = tmp;
     }
 
+    /**
+     * This method sets the location of the ball within the game window.
+     * @param width Set the x-coordinate location you want the ball to travel to
+     * @param height Set the y-coordinate location you want the ball to travel to
+     */
     private void setPoints(double width,double height){
         up.setLocation(center.getX(),center.getY()-(height / 2));
         down.setLocation(center.getX(),center.getY()+(height / 2));

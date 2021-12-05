@@ -31,7 +31,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-
+/**
+ * This class contains methods that controls the framework of the game after clicking the start button.
+ * It contains the code the display messages on the screen while the player is playing the game,
+ * as well as keeping count of the player's score each time the game starts.
+ */
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";

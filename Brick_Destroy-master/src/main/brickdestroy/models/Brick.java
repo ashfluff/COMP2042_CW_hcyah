@@ -7,16 +7,16 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * This class contains the properties of the bricks in the game, such as it's appearance and attitudes.
  */
 abstract public class Brick  {
 
-    public static final int MIN_CRACK = 1;
     public static final int DEF_CRACK_DEPTH = 1;
     public static final int DEF_STEPS = 35;
 
-
+    /**
+     * ImpactDirection used to be assigned to integers. Changed to enum for simplicity and convenience.
+     */
     enum ImpactDirection {
         UP_IMPACT,
         DOWN_IMPACT,
@@ -26,7 +26,9 @@ abstract public class Brick  {
     }
 
 
-
+    /**
+     * This class contains the attributes of the crack that can appear in bricks.
+     */
     public class Crack{
 
         private static final int CRACK_SECTIONS = 3;
@@ -66,6 +68,11 @@ abstract public class Brick  {
             crack.reset();
         }
 
+        /**
+         * This determines where to draw cracks in certain bricks when it is impacted by the ball.
+         * @param point Point of the brick which is hit by the ball
+         * @param direction Direction in which the ball is traveling when it hit the brick
+         */
         public void makeCrack(Point2D point, int direction){
             Rectangle bounds = Brick.this.brickFace.getBounds();
 
@@ -106,6 +113,11 @@ abstract public class Brick  {
             }
         }
 
+        /**
+         * This method draws the cracks of the brick when it is impacted by the ball.
+         * @param start The starting path of the crack in the brick
+         * @param end The ending path of the crack in the brick
+         */
         protected void makeCrack(Point start, Point end){
 
             GeneralPath path = new GeneralPath();
@@ -190,7 +202,15 @@ abstract public class Brick  {
 
     private boolean broken;
 
-
+    /**
+     * This method contains all attributes of the brick in the game including its appearance.
+     * @param name Type of brick
+     * @param pos Position of the brick
+     * @param size Size of the brick
+     * @param border Color of the brick's border
+     * @param inner Color of the brick's inner part
+     * @param strength Determines how many impact the brick can take from the ball before being destroyed
+     */
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();
         broken = false;
@@ -223,7 +243,13 @@ abstract public class Brick  {
         return inner;
     }
 
-
+    /**
+     * This method determines the direction of the ball after impacting the brick.
+     * Initially returns an int value, now returns enum ImpactDirection
+     * if(broken) initially returns 0. Now it returns NO_IMPACT meaning the ball has not yet hit anything.
+     * @param b Ball
+     * @return the direction of the ball after impact
+     */
     public final ImpactDirection findImpact(Ball b){
         if(broken)
             return ImpactDirection.NO_IMPACT;

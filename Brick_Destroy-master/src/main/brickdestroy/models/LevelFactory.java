@@ -7,6 +7,15 @@ import static main.brickdestroy.models.WallType.*;
  * This class contains methods for constructing in-game levels.
  */
 class LevelFactory {
+    /**
+     * This method draws bricks for each level that consists of only one type of brick.
+     * @param drawArea Draws the area which the wall of bricks will take up
+     * @param brickCnt Number of bricks
+     * @param lineCnt Number of lines of bricks
+     * @param brickSizeRatio Ratio of the size of the bricks
+     * @param type Type of brick that exists in a level
+     * @return The outline of the bricks for that level
+     */
     protected static Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, WallType type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -47,6 +56,16 @@ class LevelFactory {
 
     }
 
+    /**
+     * This method draws bricks for each level that consists more than one type of brick.
+     * @param drawArea Draws the area which the wall of bricks will take up
+     * @param brickCnt Number of bricks
+     * @param lineCnt Number of lines of bricks
+     * @param brickSizeRatio Ratio of the size of the bricks
+     * @param typeA Type of brick that exists in a level
+     * @param typeB Second type of brick that exists in a level
+     * @return The outline of the bricks for that level
+     */
     protected static Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, WallType typeA, WallType typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -92,6 +111,13 @@ class LevelFactory {
         return tmp;
     }
 
+    /**
+     * This method creates each brick in each level of the game.
+     * @param point The location where the brick will be created
+     * @param size The size of the brick
+     * @param type The type of brick that exists in the game, i.e. clay, cement, steel
+     * @return Draws a brick on the wall for each level of the game
+     */
     private static Brick makeBrick(Point point, Dimension size, WallType type){
         Brick out;
         switch(type){

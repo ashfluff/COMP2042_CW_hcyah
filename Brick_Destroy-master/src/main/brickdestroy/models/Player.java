@@ -19,7 +19,9 @@ package main.brickdestroy.models;
 
 import java.awt.*;
 
-
+/**
+ * This class contains methods with the attributes of the rectangle block that the player is able to control and play as.
+ */
 public class Player {
 
 
@@ -44,6 +46,13 @@ public class Player {
 
     }
 
+    /**
+     * Creates the rectangle and allocates its location that the player will be able to play as.
+     * Renamed from makeRectangle
+     * @param width The width of the rectangle block
+     * @param height The height of the rectangle block
+     * @return The shape of the player's rectangle as well as its location on the screen of the game.
+     */
     private Rectangle makePlayerFace(int width, int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
@@ -54,6 +63,9 @@ public class Player {
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
 
+    /**
+     * This method moves the ball in a specified location on the screen of the game.
+     */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)

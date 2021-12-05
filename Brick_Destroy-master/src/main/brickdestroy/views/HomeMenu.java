@@ -164,7 +164,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         drawCredits(g2d, frc, yGameTitle);
     }
 
-
+    /**
+     * drawGreetings, drawGameTitle and drawCredits methods are extracted from drawText method for comprehension.
+     * The y-coordinate needs to be taken to calculate the distance between each lines.
+     */
     private int drawGreetings(Graphics2D g2d, FontRenderContext frc) {
         Rectangle2D greetingsRect = greetingsFont.getStringBounds(GREETINGS,frc);
         int xGreetings = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
@@ -275,6 +278,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     /**
      * This method draws how the button should look after it is clicked.
+     * Method is extracted from drawButton because it is repetitive.
      * @param g2d
      * @param x The x-coordinate of the button location.
      * @param y The y-coordinate of the button location.

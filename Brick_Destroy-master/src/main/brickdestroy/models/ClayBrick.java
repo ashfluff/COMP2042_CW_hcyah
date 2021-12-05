@@ -6,8 +6,8 @@ import java.awt.Point;
 
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * This class contains all the properties of a clay brick.
+ * It also has all the properties of a brick.
  */
 public class ClayBrick extends Brick {
 
