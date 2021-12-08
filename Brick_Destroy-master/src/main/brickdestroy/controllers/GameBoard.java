@@ -49,7 +49,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
-    private static final Color BG_COLOR = Color.WHITE;
 
     private Timer gameTimer;
 
@@ -157,7 +156,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
 
-        clear(g2d);
 
         g.drawImage(levelsImage, 0, 0, this);
 
@@ -186,12 +184,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void clear(Graphics2D g2d){
-        Color tmp = g2d.getColor();
-        g2d.setColor(BG_COLOR);
-        g2d.fillRect(0,0,getWidth(),getHeight());
-        g2d.setColor(tmp);
-    }
 
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
