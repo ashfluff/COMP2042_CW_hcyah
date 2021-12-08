@@ -13,6 +13,12 @@ import java.util.stream.Stream;
 
 public class FileController {
 
+    /**
+     * This method appends scores to a file named score.txt.
+     * Each score will be appended in a new lines.
+     * @param score The player's score after game over or after completing the game
+     * @throws IOException
+     */
     public static void appendToFile(int score) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(".\\scores.txt", true));
         writer.write(score + "\n");
@@ -20,11 +26,15 @@ public class FileController {
         writer.close();
     }
 
+    /**
+     * This method reads the array of integers from the file scores.txt which are the player's scores after game over or
+     * completing the game
+     * @return An array of integers
+     * @throws IOException
+     */
     public static Integer[] readFromFile() throws IOException {
          Stream<String> stream = Files.lines(Paths.get(".\\scores.txt"));
          return stream.map(x -> Integer.valueOf(x)).sorted().toArray(Integer[]::new);
-         //to convert array to string
-        //return String.join("\n", stream.sorted().toArray(String[]::new));
     }
 
 }

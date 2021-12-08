@@ -137,7 +137,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
-
+    /**
+     * This method initialises the class and creates the game board window
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -148,6 +150,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
 
+    /**
+     * This method creates the background image for the game and calls other methods to draw the player, ball and bricks.
+     * @param g
+     */
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
 
