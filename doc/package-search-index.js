@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"main.brickdestroy"},{"l":"main.brickdestroy.controllers"},{"l":"main.brickdestroy.models"},{"l":"main.brickdestroy.views"}];updateSearchResults();

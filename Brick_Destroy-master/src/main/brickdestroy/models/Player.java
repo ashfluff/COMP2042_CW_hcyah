@@ -64,7 +64,7 @@ public class Player {
     }
 
     /**
-     * This method moves the ball in a specified location on the screen of the game.
+     * This method moves the player in a specified location on the screen of the game.
      */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
@@ -74,14 +74,24 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+
+    /**
+     * This method moves the player to the left of the screen.
+     */
     public void moveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
-    public void movRight(){
+    /**
+     * This method moves the player to the right of the screen.
+     */
+    public void moveRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * This method stops the player from moving.
+     */
     public void stop(){
         moveAmount = 0;
     }
@@ -90,8 +100,16 @@ public class Player {
         return  playerFace;
     }
 
+    /**
+     * This method moves the player to a specified location on the screen in relation to the ball.
+     * @param p x- and y-coordinates on the screen
+     */
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+    }
+
+    public int getMoveAmount() {
+        return moveAmount;
     }
 }
