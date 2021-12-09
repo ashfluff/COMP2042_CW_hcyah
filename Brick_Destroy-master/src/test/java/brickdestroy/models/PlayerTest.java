@@ -1,10 +1,10 @@
-package main.brickdestroy.models;
+package brickdestroy.models;
 
+import main.brickdestroy.models.Player;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
@@ -12,20 +12,20 @@ class PlayerTest {
     void moveLeft() {
         Player player = new Player(new Point(1,1),2,3, new Rectangle(10, 10));
         player.moveLeft();
-        assertEquals(-5, player.getMoveAmount());
+        Assertions.assertEquals(-5, player.getMoveAmount());
     }
 
     @Test
     void moveRight() {
         Player player = new Player(new Point(1,1),2,3, new Rectangle(10, 10));
         player.moveRight();
-        assertEquals(5, player.getMoveAmount());
+        Assertions.assertEquals(5, player.getMoveAmount());
     }
 
     @Test
     void stop() {
         Player player = new Player(new Point(1,1),2,3, new Rectangle(10, 10));
         player.stop();
-        assertEquals(0, player.getMoveAmount());
+        Assertions.assertEquals(0, player.getMoveAmount());
     }
 }
