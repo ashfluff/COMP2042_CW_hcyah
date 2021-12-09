@@ -25,7 +25,9 @@ import static main.brickdestroy.models.LevelFactory.makeChessboardLevel;
 import static main.brickdestroy.models.LevelFactory.makeSingleTypeLevel;
 import static main.brickdestroy.models.WallType.*;
 
-
+/**
+ * This class contains methods to create the wall of bricks in each level of the game.
+ */
 public class Wall {
 
     private static final int LEVELS_COUNT = 4;
@@ -68,6 +70,10 @@ public class Wall {
 
     }
 
+    /**
+     * This method initialises the speed of the ball.
+     * It initialises the speed at random.
+     */
     private void initialiseSpeed() {
         int speedX, speedY;
         do {
@@ -81,11 +87,22 @@ public class Wall {
     }
 
 
-
+    /**
+     * This method creates the ball.
+     * @param ballPos The position of the ball
+     */
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
 
+    /**
+     * This method creates the wall for each level of the game. Each level can have multiple type of bricks.
+     * @param drawArea The area which the wall will take up
+     * @param brickCount The number of bricks in a wall
+     * @param lineCount The number of lines of bricks in a wall
+     * @param brickDimensionRatio The area of the brick
+     * @return The wall for each level of the game
+     */
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -95,11 +112,17 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * This method calls methods to move the player and ball.
+     */
     public void move(){
         player.move();
         ball.move();
     }
 
+    /**
+     * This method finds when the ball has made impact with the wall.
+     */
     public void findImpacts(){
         if(player.impact(ball)){
             ball.reverseY();
@@ -122,6 +145,10 @@ public class Wall {
         }
     }
 
+    /**
+     * This method will be called when the ball has made impact with the wall.
+     * @return A boolean value; true if the ball has made impact, false if the ball did not make impact
+     */
     private boolean impactWall(){
         for(Brick b : bricks){
              Brick.ImpactDirection impact = b.findImpact(ball);
@@ -146,27 +173,50 @@ public class Wall {
     }
 
 
-
+    /**
+     * This method is called when the ball is moving upwards and impacts the wall.
+     * @param b The brick the ball has impacted
+     * @return Direction the ball will go after impact
+     */
     private boolean reactToUpImpact(Brick b) {
         ball.reverseY();
         return b.setImpact(ball.down, Brick.Crack.UP);
     }
 
+    /**
+     * This method is called when the ball is moving downwards and impacts the wall.
+     * @param b The brick the ball has impacted
+     * @return Direction the ball will go after impact
+     */
     private boolean reactToDownImpact(Brick b) {
         ball.reverseY();
         return b.setImpact(ball.up,Brick.Crack.DOWN);
     }
 
+    /**
+     * This method is called when the ball is moving left and impacts the wall.
+     * @param b The brick the ball has impacted
+     * @return Direction the ball will go after impact
+     */
     private boolean reactToLeftImpact(Brick b) {
         ball.reverseX();
         return b.setImpact(ball.right,Brick.Crack.RIGHT);
     }
 
+    /**
+     * This method is called when the ball is moving right and impacts the wall.
+     * @param b The brick the ball has impacted
+     * @return Direction the ball will go after impact
+     */
     private boolean reactToRightImpact(Brick b) {
         ball.reverseX();
         return b.setImpact(ball.left,Brick.Crack.LEFT);
     }
 
+    /**
+     * This methopd is called when the ball has made impact with the border of the screen, not the wall.
+     * @return
+     */
     private boolean impactBorder(){
         Point2D p = ball.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
@@ -180,10 +230,17 @@ public class Wall {
         return ballCount;
     }
 
+    /**
+     * This method determines whether or not the ball has been lost.
+     * @return
+     */
     public boolean isBallLost(){
         return ballLost;
     }
 
+    /**
+     * This method resets the ball and player to their starting location
+     */
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
@@ -191,6 +248,9 @@ public class Wall {
         ballLost = false;
     }
 
+    /**
+     * This method resets the wall.
+     */
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
@@ -198,14 +258,25 @@ public class Wall {
         ballCount = 3;
     }
 
+    /**
+     * This method is called when the there are no balls left.
+     * @return
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * This method is called when all bricks in the level has been destroyed.
+     * @return
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * This method is called to go to the next level.
+     */
     public void nextLevel(){
         bricks = levels[level++];
         this.brickCount = bricks.length;

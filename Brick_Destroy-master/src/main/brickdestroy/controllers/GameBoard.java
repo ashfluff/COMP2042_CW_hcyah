@@ -166,11 +166,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         drawBall(wall.ball,g2d);
 
         Stream<Boolean> booleanStream = Arrays.stream(wall.bricks).map(brick -> brick.isBroken());
-        //System.out.println("\n - " + wall.bricks.length);
         int numberOfBrokenBricks = booleanStream.filter(bool -> bool == true).toArray().length;
         score = numberOfBrokenBricks;
-        System.out.println("The score is " + score);
-        //booleanStream.forEach(b -> System.out.print(b.toString() + ","));
 
         for(Brick b : wall.bricks)
             if(!b.isBroken())
@@ -184,7 +181,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Toolkit.getDefaultToolkit().sync();
     }
 
-
+    /**
+     * This method draws and colours the brick in the game.
+     * @param brick The attributes of brick such as colour and shape
+     * @param g2d
+     */
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -198,6 +199,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * This method draws the ball in the game.
+     * @param ball The attributes of ball such as colour and shape
+     * @param g2d
+     */
     private void drawBall(Ball ball, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -212,6 +218,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * This method draws the rectangle block the player will be controlling
+     * @param p The attributes of the player such as its colour and shape
+     * @param g2d
+     */
     private void drawPlayer(Player p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -225,11 +236,19 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * This method calls other methods to draw the game menu
+     * @param g2d
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * This method creates another game board menu that is hidden behind the actual game board from the player.
+     * @param g2d
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -245,6 +264,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * This method draws the game board menu once the game is paused.
+     * @param g2d
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
