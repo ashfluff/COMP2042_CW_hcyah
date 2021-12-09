@@ -282,18 +282,33 @@ public class Wall {
         this.brickCount = bricks.length;
     }
 
+    /**
+     * This method is called to check that there are still levels after the current one it is called from.
+     * @return A boolean value; true if the current level is not the last level, false if the current level is the last level
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * This method sets the x-coordinate speed of the ball.
+     * @param s The speed of the ball in the x-coordinate
+     */
     public void setBallXSpeed(int s){
         ball.setXSpeed(s);
     }
 
+    /**
+     * This method sets the y-coordinate speed of the ball.
+     * @param s The speed of the ball in the y-coordinate
+     */
     public void setBallYSpeed(int s){
         ball.setYSpeed(s);
     }
 
+    /**
+     * This method resets the number of balls in the game, i.e. 3.
+     */
     public void resetBallCount(){
         ballCount = 3;
     }

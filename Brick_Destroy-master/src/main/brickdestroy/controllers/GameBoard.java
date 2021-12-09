@@ -421,6 +421,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * This method returns a message once focus is lost.
+     */
     public void onLostFocus(){
         gameTimer.stop();
         message = "Focus Lost";

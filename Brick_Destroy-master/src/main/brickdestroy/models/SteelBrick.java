@@ -42,17 +42,32 @@ public class SteelBrick extends Brick {
         brickFace = super.brickFace;
     }
 
-
+    /**
+     * This method creates a brick in a specific position.
+     * @param pos The position of the brick
+     * @param size The size of the brick
+     * @return A brick in a position on the screen
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * This method is called to return a steel brick.
+     * @return A steel brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * This method sets the impact of the brick when it is hit by the ball.
+     * @param point Point at where it is impacted by the ball
+     * @param dir The direction of the ball when it impacts the brick
+     * @return A boolean value if the brick has been destroyed; true if brick has been destroyed, false if it has not been destroyed
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -60,6 +75,9 @@ public class SteelBrick extends Brick {
         return  super.isBroken();
     }
 
+    /**
+     * This method is called to determine if the brick has been impacted by the ball.
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();

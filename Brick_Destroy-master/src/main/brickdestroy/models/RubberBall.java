@@ -38,7 +38,13 @@ public class RubberBall extends Ball {
         super(center,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
     }
 
-
+    /**
+     * This method creates the shape of the ball.
+     * @param center The (x,y) point of the centre of the ball
+     * @param radiusA The radius of the ball in the x-coordinate
+     * @param radiusB The radius of the ball in the y-coordinate
+     * @return The circle shape of the ball
+     */
     @Override
     protected Shape makeBall(Point2D center, int radiusA, int radiusB) {
 

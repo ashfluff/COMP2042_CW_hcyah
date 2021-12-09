@@ -27,11 +27,23 @@ public class CementBrick extends Brick {
         brickFace = super.brickFace;
     }
 
+    /**
+     * This method returns a cement brick in a specified location on the screen of the game.
+     * @param pos The position of where the brick will be created
+     * @param size The size of the brick created
+     * @return A cement brick on the specified location
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * This method sets the impact of the brick when it is hit by the ball.
+     * @param point Point at where it is impacted by the ball
+     * @param dir The direction of the ball when it impacts the brick
+     * @return A boolean value if the brick has been destroyed; true if brick has been destroyed, false if it has not been destroyed
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -45,12 +57,18 @@ public class CementBrick extends Brick {
         return true;
     }
 
-
+    /**
+     * This method returns a steel brick.
+     * @return
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * This method is called to update the crack on the brick when it is impacted by the ball.
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();
@@ -59,6 +77,9 @@ public class CementBrick extends Brick {
         }
     }
 
+    /**
+     * This method is called to repair the brick and remove all cracks.
+     */
     public void repair(){
         super.repair();
         crack.reset();

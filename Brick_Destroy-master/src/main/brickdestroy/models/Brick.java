@@ -265,15 +265,25 @@ abstract public class Brick  {
         return out;
     }
 
+    /**
+     * This method is called when the brick has been broken.
+     * @return
+     */
     public final boolean isBroken(){
         return broken;
     }
 
+    /**
+     * This method is called to repair the brick to its original state.
+     */
     public void repair() {
         broken = false;
         strength = fullStrength;
     }
 
+    /**
+     * This method is called when the brick has been impacted by the ball.
+     */
     public void impact(){
         strength--;
         boolean isStrengthZero = strength == 0;
