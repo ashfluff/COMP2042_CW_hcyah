@@ -313,5 +313,8 @@ public class Wall {
         ballCount = 3;
     }
 
+    public boolean getBallLost() {
+        return ballLost;
+    }
 
 }

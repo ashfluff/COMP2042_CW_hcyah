@@ -17,7 +17,7 @@ abstract public class Brick  {
     /**
      * ImpactDirection used to be assigned to integers. Changed to enum for simplicity and convenience.
      */
-    enum ImpactDirection {
+    public enum ImpactDirection {
         UP_IMPACT,
         DOWN_IMPACT,
         LEFT_IMPACT,
@@ -149,11 +149,23 @@ abstract public class Brick  {
             crack.append(path,true);
         }
 
+        /**
+         * This method randomly creates bounds for the crack to be formed.
+         * @param bound The depth of the crack
+         * @return Random integer of the bounds
+         */
         private int randomInBounds(int bound){
             int n = (bound * 2) + 1;
             return rnd.nextInt(n) - bound;
         }
 
+        /**
+         * This method is to check if the crack is in the middle of the brick.
+         * @param i
+         * @param steps Crack sections
+         * @param divisions Steps of the crack
+         * @return
+         */
         private boolean inMiddle(int i,int steps,int divisions){
             int low = (steps / divisions);
             int up = low * (divisions - 1);
@@ -161,6 +173,12 @@ abstract public class Brick  {
             return  (i > low) && (i < up);
         }
 
+        /**
+         * This method draws the crack in a jumping shape.
+         * @param bound The bound of the crack
+         * @param probability The probability of jumping
+         * @return The jumping crack within the bounds
+         */
         private int jumps(int bound,double probability){
 
             if(rnd.nextDouble() > probability)
@@ -169,6 +187,13 @@ abstract public class Brick  {
 
         }
 
+        /**
+         * This method creates a random point on the screen of the game.
+         * @param from A point(x,y) from which the method will create a random point from
+         * @param to A point(x,y) to which the method will create a random point from
+         * @param direction A vertical or horizontal direction
+         * @return A random point between two positions
+         */
         private Point makeRandomPoint(Point from,Point to, int direction){
 
             Point out = new Point();
@@ -222,8 +247,20 @@ abstract public class Brick  {
 
     }
 
+    /**
+     * This method creates a brick face in a position.
+     * @param pos A position in which the brick will be created
+     * @param size The size of the brick
+     * @return
+     */
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
+    /**
+     * This method checks on whether or not the brick has been broken on impact with the ball.
+     * @param point The point which the ball has impacted the brick
+     * @param dir The direction in which the ball will travel after impact
+     * @return A boolean value; false if the brick is not broken and true if it has been broken
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
@@ -290,9 +327,15 @@ abstract public class Brick  {
         this.broken = isStrengthZero;
     }
 
+    public int getStrength() {
+        return strength;
+    }
 
-
+    public boolean getIsBroken() {
+        return broken;
+    }
 }
+
 
 
 
