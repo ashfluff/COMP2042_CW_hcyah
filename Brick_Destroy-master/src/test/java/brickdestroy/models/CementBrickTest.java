@@ -19,6 +19,10 @@ class CementBrickTest {
 
     @Test
     void impact() {
+        CementBrick cementBrick = new CementBrick(new Point(1,1), new Dimension(2,4));
+        cementBrick.impact();
+        assertEquals(1, cementBrick.getStrength());
+        assertEquals(cementBrick.getIsBroken(), false);
     }
 
 }

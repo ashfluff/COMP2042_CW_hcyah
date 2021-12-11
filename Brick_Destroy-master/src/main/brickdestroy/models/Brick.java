@@ -17,7 +17,7 @@ abstract public class Brick  {
     /**
      * ImpactDirection used to be assigned to integers. Changed to enum for simplicity and convenience.
      */
-    public enum ImpactDirection {
+    enum ImpactDirection {
         UP_IMPACT,
         DOWN_IMPACT,
         LEFT_IMPACT,
