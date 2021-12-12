@@ -59,7 +59,7 @@ public class CementBrick extends Brick {
 
     /**
      * This method returns a steel brick.
-     * @return
+     * @return A steel brick
      */
     @Override
     public Shape getBrick() {

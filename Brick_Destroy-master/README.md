@@ -1,3 +1,8 @@
+Developing Software Maintenance Coursework
+Date of Submission: 12 December 2021
+Azalea Ashlyn Haszlan
+hcyah1@nottingham.edu.my 
+
 Background image credits:
 https://commons.wikimedia.org/wiki/File:Tiled_brick.jpg
 https://www.reddit.com/r/PixelArt/comments/2cdh4i/dungeon_background_ocwip/
@@ -23,3 +28,30 @@ Override methods (mouseClicked, mousePressed, mouseReleased, mouseMoved) in Home
 InstructionsMenu classes had additions to implement the additional buttons added.
 Made constant parameters for highScoreButtonDistance, instructionButtonDistance and exitButtonDDistance to improve
 refactoring. Also deleted some Color constants as they have become redundant after adding background image.
+GameFrame classes were added enableHomeMenu, enableInstructionsMenu and enableHighScoreboard so that when the player
+clicks on the buttons, the methods will be called respective to the buttons clicked and the current window will close
+and the Home Menu, Instructions Menu or High Score Board window will open up.
+In Brick class, UP_IMPACT, DOWN_IMPACT, LEFT_IMPACT AND RIGHT_IMPACT were used to be assigned to integers so when
+a method calls them, their parameters would be an integer. Therefore, I changed them to an enum ImpactDirection so that 
+they can be called instantly. Because of that, the parameters of method findImpact have to be changed to ImpactDirection
+and an extra constant called NO_IMPACT has to be created to initialise the variable 'out' and has to be called
+when in 'if(broken)', NO_IMPACT means that the ball has not made contact with the wall.
+In Wall class, methods have been extracted from makeLevels method and put into their own class, LevelFactory. Initially,
+it was too messy to read and understand, so with that it will be easier to comprehend. 
+In LevelFactory class, makeSingleType level is called to make walls for only one type of brick. makeChessBoard level is
+called to make walls with more than one type of brick. An enum is made called WallType and initially it was the
+variables were assigned to integers. With the enum, it is easier to understand what is being called and what bricks
+are being used to make the walls in each level. This enum is used in Wall and LevelFactory class.
+In GameBoard class, I found out that the numberOfBrokenBricks in the paint method can be used to keep track of the
+score, so I assigned that to a variable 'score'. The score will be incremented each time a brick is broken and is updated
+whenever the paint method is called, i.e. approximately several times a second. 
+Then, every time the player has finished a level, lost all the balls or broken all the walls, the score will be displayed
+as a message on the screen. However, the score will ONLY be saved (appended) to the file (that saves all the previous scores)
+when the player lost all the balls or broken all the walls. 
+FileController class added for methods that write and read from file. appendToFile method appends each new score to file
+'score.txt' after every game over and game completion. readFromFile returns an array of Integers of the scores. 
+In the HighScoreBoard class, readFromFile is called in displayScores method which sorts the scores from descending order
+from the left to right and displays the only top ten scores. 
+All game models such as the player, ball and brick are put into the models package. GameBoard and FileController are sorted
+into the controllers package because they coordinate the classes in the model and view packages to make the whole game 
+function properly. Classes responsible for the UI are put into the views package.

@@ -115,7 +115,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     /**
      * This method closes the home menu window and redirects the user to the high score menu window.
      */
-    public void enableHighScoreMenu() {
+    public void enableHighScoreBoard() {
         this.dispose();
         this.remove(homeMenu);
         this.add(highscoreBoard,BorderLayout.CENTER);
