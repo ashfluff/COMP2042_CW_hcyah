@@ -69,7 +69,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean highScoreClicked;
     private boolean exitClicked;
 
-    private double instrButtonDistance = 1.2;
+    private double instructionButtonDistance = 1.2;
     private double highScoreButtonDistance = 1.17;
     private double exitButtonDistance = 1.15;
 
@@ -229,7 +229,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         x = startButton.x;
         y = startButton.y;
 
-        y *= instrButtonDistance;
+        y *= instructionButtonDistance;
 
         //draw instructions button
         instructionsButton.setLocation(x,y);
