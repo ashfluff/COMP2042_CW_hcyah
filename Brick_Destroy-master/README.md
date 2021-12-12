@@ -18,8 +18,11 @@ Removed drawContainer method in HomeMenu class because it is redundant.
 Added background images for the home menu and game levels that suits the game more.
 Initially, the windows are resizable, so the player is able to resize the windows,
 but I made them non-resizable otherwise they will see the unnecessary white screen.
-In HomeMenu class, drawGreetings, drawGameTitle and drawCredits method are extracted from
-drawText method to make drawText easier to read and understand. drawGreetings, 
+A refactoring activity I'm proud of but could not fit in the video is in HomeMenu class, drawGreetings, drawGameTitle 
+and drawCredits method are extracted from drawText method to make drawText easier to read and understand. 
+The methods are extracted because they were long and complicated, very difficult to understand without 
+comments. So now,if you read the drawText method you can understand what it does without going to the drawGreetings,
+drawGameTitle or drawCredits methods unless you want to see how the code works. drawGreetings, 
 drawGameTitle and drawCredits methods have relatively the same principle and functions, anyway.
 drawButtonClicked method extracted from drawButton method to draw the buttons when they are
 clicked. Before it was used twice in the drawButton method, but as I added more buttons it
